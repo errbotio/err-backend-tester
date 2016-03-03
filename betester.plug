@@ -1,0 +1,9 @@
+[Core]
+Name = Err plugin to test fondamentals of a backend.
+Module = betester
+
+[Documentation]
+Description = series of command to test if a backend is consistent.
+
+[Python]
+Version = 3
