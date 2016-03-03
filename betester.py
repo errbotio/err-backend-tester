@@ -1,6 +1,7 @@
 # vim: ts=4:sw=4
 from errbot import botcmd, BotPlugin
-from errbot import arg_botcmd
+from errbot.backends.base import Identifier, MUCRoom
+
 
 class BackendTester(BotPlugin):
     """Those are commands to test a backend."""
