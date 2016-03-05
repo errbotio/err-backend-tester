@@ -7,3 +7,6 @@ Description = series of command to test if a backend is consistent.
 
 [Python]
 Version = 3
+
+[Errbot]
+min = 4.0.0
