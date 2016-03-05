@@ -1,6 +1,6 @@
 # vim: ts=4:sw=4
 from errbot import botcmd, BotPlugin
-from errbot.backends.base import Identifier, MUCRoom
+from errbot.backends.base import Person, Room, RoomOccupant
 
 
 class BackendTester(BotPlugin):
@@ -10,11 +10,11 @@ class BackendTester(BotPlugin):
     def private(self, mess, args):
         """Send this command from a private channel.
         """
-        if not isinstance(mess.frm, Identifier):
-            yield "FAILED mess.frm is not an identifier"
+        if not isinstance(mess.frm, Person):
+            yield "FAILED mess.frm is not a Person"
 
-        if not isinstance(mess.to, Identifier):
-            yield "FAILED mess.to is not an identifier"
+        if not isinstance(mess.to, Person):
+            yield "FAILED mess.to is not a Person"
 
         if mess.to != self._bot.bot_identifier:
             yield "FAILED mess.to should implement equal correctly and resolve to the bot"
@@ -30,11 +30,17 @@ class BackendTester(BotPlugin):
     def public(self, mess, args):
         """Send this command from a public channel.
         """
-        if not isinstance(mess.frm, Identifier):
-            yield "FAILED mess.frm is not an Identifier"
+        if not isinstance(mess.frm, Person):
+            yield "FAILED mess.frm is not a Person"
 
-        if not isinstance(mess.to, MUCRoom):
-            yield "FAILED mess.to is not a MUCRoom"
+        if not isinstance(mess.frm, RoomOccupant):
+            yield "FAILED mess.frm is not a RoomOccupant"
+
+        if not isinstance(mess.frm.room, Room):
+            yield "FAILED mess.frm.room is not a Room"
+
+        if not isinstance(mess.to, Room):
+            yield "FAILED mess.to is not a Room"
 
         if mess.to != self.query_room(str(mess.to)):
             yield "FAILED self.query_room(str(mess.to)) should be mess.to"
