@@ -31,14 +31,14 @@ class BackendTester(BotPlugin):
             if mess.frm != self['mess.frm']:
                 yield "FAILED mess.frm is different from its pickled version"
         except Exception as e:
-            yield "FAILED storing mess.frm resulted in an exception %e" % e
+            yield "FAILED storing mess.frm resulted in an exception %s" % e
 
         try:
             self['mess.to'] = mess.to
             if mess.to != self['mess.to']:
                 yield "FAILED mess.to is different from its pickled version"
         except Exception as e:
-            yield "FAILED storing mess.to resulted in an exception %e" % e
+            yield "FAILED storing mess.to resulted in an exception %s" % e
 
         yield "End of test"
 
@@ -69,20 +69,20 @@ class BackendTester(BotPlugin):
 
         if mess.frm != self.build_identifier(str(mess.frm)):
             yield "FAILED self.build_identifier(str(mess.frm)) should be mess.frm"
-        
+
         try:
             self['mess.frm'] = mess.frm
             if mess.frm != self['mess.frm']:
                 yield "FAILED mess.frm is different from its pickled version"
         except Exception as e:
-            yield "FAILED storing mess.frm resulted in an exception %e" % e
+            yield "FAILED storing mess.frm resulted in an exception %s" % e
 
         try:
             self['mess.to'] = mess.to
             if mess.to != self['mess.to']:
                 yield "FAILED mess.to is different from its pickled version"
         except Exception as e:
-            yield "FAILED storing mess.to resulted in an exception %e" % e
+            yield "FAILED storing mess.to resulted in an exception %s" % e
 
         yield "End of test"
 
