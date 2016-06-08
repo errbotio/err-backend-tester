@@ -45,6 +45,12 @@ class BackendTester(BotPlugin):
         if mess.to != self.query_room(str(mess.to)):
             yield "FAILED self.query_room(str(mess.to)) should be mess.to"
 
+        if mess.to != self.build_identifier(str(mess.to)):
+            yield "FAILED self.build_identifier(str(mess.to)) should be mess.to"
+
+        if not isinstance(self.build_identifier(str(mess.to), Room)):
+            yield "FAILED self.build_identifier(str(mess.to)) should be a Room"
+
         if mess.frm != self.build_identifier(str(mess.frm)):
             yield "FAILED self.build_identifier(str(mess.frm)) should be mess.frm"
         yield "End of test"
